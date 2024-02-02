@@ -54,6 +54,7 @@ class Example(QWidget):
         self.response = getImage(','.join([self.line1.text(), self.line2.text()]),
                                  ','.join([self.line3.text(), self.line3.text()]), 'map')
         self.pixmap = QPixmap.fromImage(QImage.fromData(self.response.content))
+        self.setFocus()
         self.image.setPixmap(self.pixmap)
 
     def keyPressEvent(self, event):
@@ -65,10 +66,10 @@ class Example(QWidget):
                 self.line3.setText(str(float(self.line3.text()) * 2))
                 self.ev()
         elif event.key() == Qt.Key_Left:
-            self.line1.setText(str(float(self.line1.text()) + (float(self.line3.text()) / 2)))
+            self.line1.setText(str(float(self.line1.text()) - (float(self.line3.text()) / 2)))
             self.ev()
         elif event.key() == Qt.Key_Right:
-            self.line1.setText(str(float(self.line1.text()) - (float(self.line3.text()) / 2)))
+            self.line1.setText(str(float(self.line1.text()) + (float(self.line3.text()) / 2)))
             self.ev()
         elif event.key() == Qt.Key_Up:
             self.line2.setText(str(float(self.line2.text()) + (float(self.line3.text()) / 2)))
